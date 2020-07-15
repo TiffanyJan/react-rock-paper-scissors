@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Choice from "./Choice.js";
@@ -7,6 +7,8 @@ import ScissorsImg from "./scissors.png";
 import PaperImg from "./paper.png";
 
 function App() {
+  const [selectedChoice, setSelectedChoice] = useState("");
+
   return (
     <div className="col-xs-1" align="center">
       <div className="container">
@@ -20,9 +22,21 @@ function App() {
         </div>
 
         <div className="row mt-5">
-          <Choice option={"Rock"} picture={RockImg} />
-          <Choice option={"Paper"} picture={PaperImg} />
-          <Choice option={"Scissors"} picture={ScissorsImg} />
+          <Choice
+            option={"Rock"}
+            picture={RockImg}
+            setSelectedChoice={setSelectedChoice}
+          />
+          <Choice
+            option={"Paper"}
+            picture={PaperImg}
+            setSelectedChoice={setSelectedChoice}
+          />
+          <Choice
+            option={"Scissors"}
+            picture={ScissorsImg}
+            setSelectedChoice={setSelectedChoice}
+          />
         </div>
       </div>
 
@@ -39,7 +53,7 @@ function App() {
           Player
           <div className="row m-2 justify-content-center">
             <button type="button" className="btn btn-primary btn-lg">
-              Rock
+              {selectedChoice}
             </button>
           </div>
         </div>
