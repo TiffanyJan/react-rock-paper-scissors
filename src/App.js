@@ -15,13 +15,36 @@ function App() {
 
   const [showRound, setShowRound] = useState(0);
 
-  function ready(option) {
+  const [showPlayerScore, setPlayerShowScore] = useState(0);
+
+  const [showComputerScore, setComputerScore] = useState(0);
+
+  function ready(playerChoice) {
     let array = ["Rock", "Paper", "Scissors"];
-    let randomItem = array[Math.floor(Math.random() * array.length)];
+    let computerChoice = array[Math.floor(Math.random() * array.length)];
     setShowChoices(true);
-    setComputerChoice(randomItem);
-    setSelectedChoice(option);
+    setComputerChoice(computerChoice);
+    setSelectedChoice(playerChoice);
     setShowRound((round) => round + 1);
+    playerScore(playerChoice, computerChoice);
+    setComputerScore(playerChoice, computerChoice);
+  }
+
+  function playerScore(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+      setPlayerShowScore((score) => (score += 0));
+    } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
+      setPlayerShowScore((score) => score + 1);
+    } else if (playerChoice === "Paper" && computerChoice === "Rock") {
+      setPlayerShowScore((score) => score + 1);
+    } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
+      setPlayerShowScore((score) => score + 1);
+    } else {
+    }
+
+    // if player == Paper, cpu == rock, player = 1
+    // if player == Rock, cpu == scissors, player 1
+    // if player == Scissors, cpu = paper, player 1
   }
 
   return (
@@ -32,7 +55,12 @@ function App() {
 
         <div className="row mt-3">
           <div className="card">
-            <div className="card-body">Round {showRound}</div>
+            <div className="card-body">
+              Round {showRound}
+              <div className="row mt-1">
+                {showPlayerScore} : {showComputerScore}
+              </div>
+            </div>
           </div>
         </div>
 
