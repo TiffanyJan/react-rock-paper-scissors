@@ -5,6 +5,8 @@ import Choice from "./Choice.js";
 import RockImg from "./rock.png";
 import ScissorsImg from "./scissors.png";
 import PaperImg from "./paper.png";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 function App() {
   const [selectedChoice, setSelectedChoice] = useState("");
@@ -18,6 +20,8 @@ function App() {
   const [showPlayerScore, setPlayerShowScore] = useState(0);
 
   const [showComputerScore, setComputerScore] = useState(0);
+
+  const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
     if (showRound >= 3) {
@@ -62,6 +66,13 @@ function App() {
               <div className="row mt-1">
                 {showPlayerScore} : {showComputerScore}
               </div>
+              <Button variant="primary" onClick={() => setModalShow(true)}>
+                Launch vertically centered modal
+              </Button>
+              <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
             </div>
           </div>
         </div>
@@ -96,6 +107,34 @@ function App() {
       ) : null}
     </div>
   );
+
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Modal heading
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Centered Modal</h4>
+          <p>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 }
 
 export default App;
