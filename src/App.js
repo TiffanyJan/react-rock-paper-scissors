@@ -19,11 +19,16 @@ function App() {
 
   const [showComputerScore, setComputerScore] = useState(0);
 
+  useEffect(() => {
+    if (showRound >= 3) {
+      console.log("end");
+    }
+  }, [showRound]);
+
   function ready(playerChoice) {
     let array = ["Rock", "Paper", "Scissors"];
     let computerChoice = array[Math.floor(Math.random() * array.length)];
     setShowChoices(true);
-    console.log(showChoices);
     setComputerChoice(computerChoice);
     setSelectedChoice(playerChoice);
     setShowRound((round) => round + 1);
