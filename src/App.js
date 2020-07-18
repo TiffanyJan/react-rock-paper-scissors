@@ -13,12 +13,15 @@ function App() {
 
   const [showChoices, setShowChoices] = React.useState(false);
 
+  const [showRound, setShowRound] = useState(0);
+
   function ready(option) {
     let array = ["Rock", "Paper", "Scissors"];
     let randomItem = array[Math.floor(Math.random() * array.length)];
     setShowChoices(true);
     setComputerChoice(randomItem);
     setSelectedChoice(option);
+    setShowRound((round) => round + 1);
   }
 
   return (
@@ -29,7 +32,7 @@ function App() {
 
         <div className="row mt-3">
           <div className="card">
-            <div className="card-body">Round 1</div>
+            <div className="card-body">Round {showRound}</div>
           </div>
         </div>
 
