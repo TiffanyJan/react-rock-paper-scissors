@@ -5,7 +5,7 @@ export default function Choice(props) {
     <div
       className="col-sm card"
       style={{ border: "none" }}
-      onClick={() => props.setSelectedChoice(props.option)}
+      onClick={() => props.ready(props.option)}
     >
       <img
         className="card-img-top"

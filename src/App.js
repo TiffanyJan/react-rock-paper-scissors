@@ -9,6 +9,18 @@ import PaperImg from "./paper.png";
 function App() {
   const [selectedChoice, setSelectedChoice] = useState("");
 
+  const [computerChoice, setComputerChoice] = useState("");
+
+  const [showChoices, setShowChoices] = React.useState(false);
+
+  function ready(option) {
+    let array = ["Rock", "Paper", "Scissors"];
+    let randomItem = array[Math.floor(Math.random() * array.length)];
+    setShowChoices(true);
+    setComputerChoice(randomItem);
+    setSelectedChoice(option);
+  }
+
   return (
     <div className="col-xs-1" align="center">
       <div className="container">
@@ -22,51 +34,33 @@ function App() {
         </div>
 
         <div className="row mt-5">
-          <Choice
-            option={"Rock"}
-            picture={RockImg}
-            setSelectedChoice={setSelectedChoice}
-          />
-          <Choice
-            option={"Paper"}
-            picture={PaperImg}
-            setSelectedChoice={setSelectedChoice}
-          />
-          <Choice
-            option={"Scissors"}
-            picture={ScissorsImg}
-            setSelectedChoice={setSelectedChoice}
-          />
+          <Choice option={"Rock"} picture={RockImg} ready={ready} />
+          <Choice option={"Paper"} picture={PaperImg} ready={ready} />
+          <Choice option={"Scissors"} picture={ScissorsImg} ready={ready} />
         </div>
       </div>
 
-      <div className="row mt-5">
-        <div className="col-sm">
-          <button type="button" className="btn btn-primary btn-lg">
-            Ready?
-          </button>
-        </div>
-      </div>
+      {showChoices ? (
+        <div className="row mt-5">
+          <div className="col-sm">
+            Player
+            <div className="row m-2 justify-content-center">
+              <button type="button" className="btn btn-primary btn-lg">
+                {selectedChoice}
+              </button>
+            </div>
+          </div>
 
-      <div className="row mt-5">
-        <div className="col-sm">
-          Player
-          <div className="row m-2 justify-content-center">
-            <button type="button" className="btn btn-primary btn-lg">
-              {selectedChoice}
-            </button>
+          <div className="col-sm">
+            Computer
+            <div className="row m-2 justify-content-center">
+              <button type="button" className="btn btn-primary btn-lg">
+                {computerChoice}
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className="col-sm">
-          Computer
-          <div className="row m-2 justify-content-center">
-            <button type="button" className="btn btn-primary btn-lg">
-              Paper
-            </button>
-          </div>
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 }
