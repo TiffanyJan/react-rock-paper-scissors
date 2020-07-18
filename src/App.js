@@ -25,6 +25,7 @@ function App() {
 
   useEffect(() => {
     if (showRound >= 3) {
+      setModalShow(true);
       console.log("end");
     }
   }, [showRound]);
@@ -66,9 +67,6 @@ function App() {
               <div className="row mt-1">
                 {showPlayerScore} : {showComputerScore}
               </div>
-              <Button variant="primary" onClick={() => setModalShow(true)}>
-                Launch vertically centered modal
-              </Button>
               <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
@@ -117,17 +115,10 @@ function App() {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">You Win</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
+          <h4>Replay?</h4>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
