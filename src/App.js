@@ -23,11 +23,11 @@ function App() {
     let array = ["Rock", "Paper", "Scissors"];
     let computerChoice = array[Math.floor(Math.random() * array.length)];
     setShowChoices(true);
+    console.log(showChoices);
     setComputerChoice(computerChoice);
     setSelectedChoice(playerChoice);
     setShowRound((round) => round + 1);
     playerScore(playerChoice, computerChoice);
-    setComputerScore(playerChoice, computerChoice);
   }
 
   function playerScore(playerChoice, computerChoice) {
@@ -40,11 +40,8 @@ function App() {
     } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
       setPlayerShowScore((score) => score + 1);
     } else {
+      setComputerScore((score) => score + 1);
     }
-
-    // if player == Paper, cpu == rock, player = 1
-    // if player == Rock, cpu == scissors, player 1
-    // if player == Scissors, cpu = paper, player 1
   }
 
   return (
