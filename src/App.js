@@ -116,6 +116,10 @@ function App() {
     </div>
   );
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -134,7 +138,7 @@ function App() {
           <h4>Replay?</h4>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={refreshPage}>Replay?</Button>
         </Modal.Footer>
       </Modal>
     );
