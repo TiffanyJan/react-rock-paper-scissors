@@ -9,3 +9,35 @@
   float: none;
   margin-bottom: 10px;
 }
+
+#contained-modal-title-vcenter {
+  margin: auto;
+  margin-left: 340px;
+}
+
+.row .mt-1 {
+  margin-top: 0.25rem !important;
+  margin-left: 17px;
+}
+
+.col-sm.card.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.background {
+  /* The image used */
+  /* background-color: rgb(231, 231, 230); */
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card .card-body {
+  opacity: 2;
+}

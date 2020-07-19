@@ -1,11 +1,24 @@
 import React from "react";
 
 export default function Choice(props) {
+
+  function choiceClicked(option) {
+    props.ready(option);
+  }
+
+  function classes() {
+    if (props.show == true) {
+      return "col-sm card";
+    } else {
+      return "col-sm card hide";
+    }
+  }
+
   return (
     <div
-      className="col-sm card"
+      className={classes()}
       style={{ border: "none" }}
-      onClick={() => props.ready(props.option)}
+      onClick={() => choiceClicked(props.option)}
     >
       <img
         className="card-img-top"

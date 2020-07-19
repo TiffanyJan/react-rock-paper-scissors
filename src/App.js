@@ -23,6 +23,12 @@ function App() {
 
   const [modalShow, setModalShow] = React.useState(false);
 
+  const [choices, setChoices] = useState([
+    { name: "Rock", image: RockImg, show: true },
+    { name: "Scissors", image: ScissorsImg, show: true },
+    { name: "Paper", image: PaperImg, show: true },
+  ]);
+
   useEffect(() => {
     if (showRound >= 3) {
       setModalShow(true);
@@ -38,6 +44,32 @@ function App() {
     setSelectedChoice(playerChoice);
     setShowRound((round) => round + 1);
     playerScore(playerChoice, computerChoice);
+    hideOptions(playerChoice);
+  }
+
+  function hideOptions(playerChoice) {
+    if (playerChoice == "Rock") {
+      let newChoices = [
+        { name: "Rock", image: RockImg, show: true },
+        { name: "Scissors", image: ScissorsImg, show: false },
+        { name: "Paper", image: PaperImg, show: false },
+      ];
+      setChoices(newChoices);
+    } else if (playerChoice == "Scissors") {
+      let newChoices = [
+        { name: "Rock", image: RockImg, show: false },
+        { name: "Scissors", image: ScissorsImg, show: true },
+        { name: "Paper", image: PaperImg, show: false },
+      ];
+      setChoices(newChoices);
+    } else {
+      let newChoices = [
+        { name: "Rock", image: RockImg, show: false },
+        { name: "Scissors", image: ScissorsImg, show: false },
+        { name: "Paper", image: PaperImg, show: true },
+      ];
+      setChoices(newChoices);
+    }
   }
 
   function playerScore(playerChoice, computerChoice) {
@@ -65,54 +97,62 @@ function App() {
   }
 
   return (
-    <div className="col-xs-1" align="center">
-      <div className="container">
-        <div className="row"></div>
-        <h1>Rock Paper Scissors</h1>
+    <div className="background">
+      <div className="col-xs-1" align="center">
+        <div className="container">
+          <div className="row"></div>
+          <h1>Rock Paper Scissors</h1>
 
-        <div className="row mt-3">
-          <div className="card">
-            <div className="card-body">
-              Round {showRound}
-              <div className="row mt-1">
-                {showPlayerScore} : {showComputerScore}
+          <div className="row mt-3">
+            <div className="card">
+              <div className="card-body">
+                Round {showRound}
+                <div className="row mt-1">
+                  {showPlayerScore} : {showComputerScore}
+                </div>
+                <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
               </div>
-              <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
+            </div>
+          </div>
+
+          <div className="row mt-5">
+            {choices.map((choice) => (
+              <Choice
+                key={choice.name}
+                option={choice.name}
+                picture={choice.image}
+                ready={ready}
+                show={choice.show}
               />
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="row mt-5">
-          <Choice option={"Rock"} picture={RockImg} ready={ready} />
-          <Choice option={"Paper"} picture={PaperImg} ready={ready} />
-          <Choice option={"Scissors"} picture={ScissorsImg} ready={ready} />
-        </div>
+        {showChoices ? (
+          <div className="row mt-5">
+            <div className="col-sm">
+              Player
+              <div className="row m-2 justify-content-center">
+                <button type="button" className="btn btn-primary btn-lg">
+                  {selectedChoice}
+                </button>
+              </div>
+            </div>
+
+            <div className="col-sm">
+              Computer
+              <div className="row m-2 justify-content-center">
+                <button type="button" className="btn btn-primary btn-lg">
+                  {computerChoice}
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
-
-      {showChoices ? (
-        <div className="row mt-5">
-          <div className="col-sm">
-            Player
-            <div className="row m-2 justify-content-center">
-              <button type="button" className="btn btn-primary btn-lg">
-                {selectedChoice}
-              </button>
-            </div>
-          </div>
-
-          <div className="col-sm">
-            Computer
-            <div className="row m-2 justify-content-center">
-              <button type="button" className="btn btn-primary btn-lg">
-                {computerChoice}
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 
@@ -135,11 +175,11 @@ function App() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Replay?</h4>
+          <div className="col-xs-1" align="center">
+            <Button onClick={refreshPage}>Replay?</Button>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={refreshPage}>Replay?</Button>
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     );
   }
