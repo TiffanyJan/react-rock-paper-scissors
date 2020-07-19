@@ -54,6 +54,16 @@ function App() {
     }
   }
 
+  function finalScore() {
+    if (showPlayerScore === showComputerScore) {
+      return "Draw";
+    } else if (showPlayerScore > showComputerScore) {
+      return "You Win";
+    } else {
+      return "Computer Wins";
+    }
+  }
+
   return (
     <div className="col-xs-1" align="center">
       <div className="container">
@@ -115,7 +125,9 @@ function App() {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">You Win</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {finalScore()}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h4>Replay?</h4>
