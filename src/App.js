@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     if (showRound >= 1) {
-      setModalShow(true);
+      //setModalShow(true);
       console.log("end");
     }
   }, [showRound]);
@@ -110,10 +110,10 @@ function App() {
                 <div className="row mt-1">
                   {showPlayerScore} : {showComputerScore}
                 </div>
-                <MyVerticallyCenteredModal
+                {/* <MyVerticallyCenteredModal
                   show={modalShow}
                   onHide={() => setModalShow(false)}
-                />
+                /> */}
               </div>
             </div>
           </div>

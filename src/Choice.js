@@ -7,7 +7,7 @@ export default function Choice(props) {
 
   function classes() {
     if (props.show == true) {
-      return "col-sm card";
+      return "col-sm card move";
     } else {
       return "col-sm card hide";
     }
