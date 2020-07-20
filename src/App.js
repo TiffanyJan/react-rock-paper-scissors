@@ -30,7 +30,7 @@ function App() {
   ]);
 
   useEffect(() => {
-    if (showRound >= 3) {
+    if (showRound >= 1) {
       setModalShow(true);
       console.log("end");
     }
