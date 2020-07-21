@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 function App() {
   const [selectedChoice, setSelectedChoice] = useState("");
 
-  const [computerChoice, setComputerChoice] = useState("");
+  const [computerChoice, setComputerChoice] = useState({});
 
   const [showChoices, setShowChoices] = React.useState(false);
 
@@ -37,7 +37,11 @@ function App() {
   }, [showRound]);
 
   function ready(playerChoice) {
-    let array = ["Rock", "Paper", "Scissors"];
+    let array = [
+      { name: "Rock", image: RockImg, show: true },
+      { name: "Scissors", image: ScissorsImg, show: true },
+      { name: "Paper", image: PaperImg, show: true },
+    ];
     let computerChoice = array[Math.floor(Math.random() * array.length)];
     setShowChoices(true);
     setComputerChoice(computerChoice);
@@ -73,13 +77,13 @@ function App() {
   }
 
   function playerScore(playerChoice, computerChoice) {
-    if (playerChoice === computerChoice) {
+    if (playerChoice === computerChoice.name) {
       setPlayerShowScore((score) => (score += 0));
-    } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
+    } else if (playerChoice === "Rock" && computerChoice.name === "Scissors") {
       setPlayerShowScore((score) => score + 1);
-    } else if (playerChoice === "Paper" && computerChoice === "Rock") {
+    } else if (playerChoice === "Paper" && computerChoice.name === "Rock") {
       setPlayerShowScore((score) => score + 1);
-    } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
+    } else if (playerChoice === "Scissors" && computerChoice.name === "Paper") {
       setPlayerShowScore((score) => score + 1);
     } else {
       setComputerScore((score) => score + 1);
@@ -145,9 +149,13 @@ function App() {
             <div className="col-sm">
               Computer
               <div className="row m-2 justify-content-center">
-                <button type="button" className="btn btn-primary btn-lg">
-                  {computerChoice}
-                </button>
+                <Choice
+                  key={computerChoice.name}
+                  option={computerChoice.name}
+                  picture={computerChoice.image}
+                  ready={ready}
+                  show={computerChoice.show}
+                />
               </div>
             </div>
           </div>
