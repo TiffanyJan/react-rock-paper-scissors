@@ -30,8 +30,21 @@ function App() {
 
   useEffect(() => {
     if (showRound >= 1) {
+      console.log(finalScore());
     }
   }, [finalScore]);
+
+  function finalScore() {
+    if (showRound === 0) {
+      return " ";
+    } else if (showPlayerScore === showComputerScore) {
+      return "Draw";
+    } else if (showPlayerScore > showComputerScore) {
+      return "You Win";
+    } else {
+      return "Computer Wins";
+    }
+  }
 
   function ready(playerChoice) {
     let array = [
@@ -84,16 +97,6 @@ function App() {
       setPlayerShowScore((score) => score + 1);
     } else {
       setComputerScore((score) => score + 1);
-    }
-  }
-
-  function finalScore() {
-    if (showPlayerScore === showComputerScore) {
-      return "Draw";
-    } else if (showPlayerScore > showComputerScore) {
-      return "You Win";
-    } else {
-      return "Computer Wins";
     }
   }
 
