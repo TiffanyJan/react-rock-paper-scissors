@@ -5,7 +5,6 @@ import Choice from "./Choice.js";
 import RockImg from "./rock.png";
 import ScissorsImg from "./scissors.png";
 import PaperImg from "./paper.png";
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 function App() {
@@ -100,6 +99,10 @@ function App() {
     }
   }
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div className="background">
       <div className="col-xs-1" align="center">
@@ -114,10 +117,6 @@ function App() {
                 <div className="row mt-1">
                   {showPlayerScore} : {showComputerScore}
                 </div>
-                <MyVerticallyCenteredModal
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
               </div>
             </div>
           </div>
@@ -134,6 +133,12 @@ function App() {
                 />
               ))}
             </div>
+          </div>
+        </div>
+
+        <div className="row mt-3">
+          <div className="col-xs-1" align="center">
+            <Button onClick={refreshPage}>Replay?</Button>
           </div>
         </div>
 
@@ -156,34 +161,6 @@ function App() {
       </div>
     </div>
   );
-
-  function refreshPage() {
-    window.location.reload(false);
-  }
-
-  function MyVerticallyCenteredModal(props) {
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        backdrop="static"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            {finalScore()}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="col-xs-1" align="center">
-            <Button onClick={refreshPage}>Replay?</Button>
-          </div>
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal>
-    );
-  }
 }
 
 export default App;
