@@ -138,7 +138,9 @@ function App() {
 
         <div className="row mt-3">
           <div className="col-xs-1" align="center">
-            <Button onClick={refreshPage}>Replay?</Button>
+            <div className="row mt-2">
+              <Button onClick={refreshPage}>Replay?</Button>
+            </div>
           </div>
         </div>
 
