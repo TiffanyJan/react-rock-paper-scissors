@@ -122,16 +122,18 @@ function App() {
             </div>
           </div>
 
-          <div className="row mt-5">
-            {choices.map((choice) => (
-              <Choice
-                key={choice.name}
-                option={choice.name}
-                picture={choice.image}
-                ready={ready}
-                show={choice.show}
-              />
-            ))}
+          <div className="row mt-3">
+            <div className="row mt-3" style={{ margin: "0 auto" }}>
+              {choices.map((choice) => (
+                <Choice
+                  key={choice.name}
+                  option={choice.name}
+                  picture={choice.image}
+                  ready={ready}
+                  show={choice.show}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
