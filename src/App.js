@@ -114,10 +114,10 @@ function App() {
                 <div className="row mt-1">
                   {showPlayerScore} : {showComputerScore}
                 </div>
-                {/* <MyVerticallyCenteredModal
+                <MyVerticallyCenteredModal
                   show={modalShow}
                   onHide={() => setModalShow(false)}
-                /> */}
+                />
               </div>
             </div>
           </div>
@@ -137,15 +137,6 @@ function App() {
 
         {showChoices ? (
           <div className="row mt-5">
-            <div className="col-sm">
-              Player
-              <div className="row m-2 justify-content-center">
-                <button type="button" className="btn btn-primary btn-lg">
-                  {selectedChoice}
-                </button>
-              </div>
-            </div>
-
             <div className="col-sm">
               Computer
               <div className="row m-2 justify-content-center">
