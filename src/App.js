@@ -30,10 +30,8 @@ function App() {
 
   useEffect(() => {
     if (showRound >= 1) {
-      //setModalShow(true);
-      console.log("end");
     }
-  }, [showRound]);
+  }, [finalScore]);
 
   function ready(playerChoice) {
     let array = [
@@ -141,6 +139,9 @@ function App() {
             <div className="row mt-2">
               <Button onClick={refreshPage}>Replay?</Button>
             </div>
+          </div>
+          <div className="col-xs-1" align="center">
+            <div className="score">{finalScore()}</div>
           </div>
         </div>
 

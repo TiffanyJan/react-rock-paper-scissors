@@ -53,12 +53,18 @@
 
 .row .mt-1 {
   margin-top: 0.25rem !important;
-  margin-left: 17px;
+  margin-left: 15px;
 }
 
 .row .mt-2 {
   margin-top: 0.25rem !important;
   margin-left: 774px;
+}
+
+.score {
+  margin-top: 0.25rem !important;
+  margin-left: 797px;
+  padding-top: 20px;
 }
 
 element.style {
