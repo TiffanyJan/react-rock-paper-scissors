@@ -6,6 +6,7 @@ import RockImg from "./rock.png";
 import ScissorsImg from "./scissors.png";
 import PaperImg from "./paper.png";
 import Button from "react-bootstrap/Button";
+import { CSSTransition } from "react-transition-group"; // ES6
 
 function App() {
   const [selectedChoice, setSelectedChoice] = useState("");
@@ -138,20 +139,20 @@ function App() {
         </div>
 
         <div className="row mt-3">
-          <div className="col-xs-1" align="center">
-            <div className="row mt-2">
-              <Button onClick={refreshPage}>Replay?</Button>
-            </div>
+          <div className="row mt-2">
+            <Button onClick={refreshPage}>Replay?</Button>
           </div>
-          <div className="col-xs-1" align="center">
+        </div>
+        <div className="row mt-3">
+          <div className="row mt-2">
             <div className="score">{finalScore()}</div>
           </div>
         </div>
 
-        {showChoices ? (
-          <div className="row mt-5">
-            <div className="col-sm">
-              Computer
+        <div className="row mt-5">
+          <div className="col-sm">
+            Computer's Choice
+            <CSSTransition in={showChoices} timeout={5000} classNames="my-node">
               <div className="row m-2 justify-content-center">
                 <Choice
                   key={computerChoice.name}
@@ -161,9 +162,9 @@ function App() {
                   show={computerChoice.show}
                 />
               </div>
-            </div>
+            </CSSTransition>
           </div>
-        ) : null}
+        </div>
       </div>
     </div>
   );

@@ -8,47 +8,29 @@
   margin: 0 auto;
   float: none;
   margin-bottom: 10px;
-  animation-name: example;
   padding-left: 10px;
+}
+
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 2000ms;
+}
+
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 2000ms;
 }
 
 .col-sm.card.hide {
   opacity: 0;
   transition: opacity 0.7s;
   pointer-events: none;
-}
-
-/* .move {
-  animation-name: example;
-  padding-left: 10px;
-} */
-
-@keyframes example {
-  0% {
-    left: 0px;
-    top: 0px;
-  }
-  25% {
-    left: 200px;
-    top: 0px;
-  }
-  50% {
-    left: 200px;
-    top: 200px;
-  }
-  75% {
-    left: 0px;
-    top: 200px;
-  }
-  100% {
-    left: 0px;
-    top: 0px;
-  }
-}
-
-#contained-modal-title-vcenter {
-  margin: auto;
-  margin-left: 340px;
 }
 
 .row .mt-1 {
@@ -62,9 +44,9 @@
 }
 
 .score {
-  margin-top: 0.25rem !important;
-  margin-left: 797px;
+  margin: auto 0;
   padding-top: 20px;
+  text-align: center;
 }
 
 element.style {

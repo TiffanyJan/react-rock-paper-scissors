@@ -7,7 +7,7 @@ export default function Choice(props) {
 
   function classes() {
     if (props.show == true) {
-      return "col-sm card move mx-auto";
+      return "col-sm card";
     } else {
       return "col-sm card hide";
     }
@@ -23,7 +23,7 @@ export default function Choice(props) {
         className="card-img-top"
         src={props.picture}
         alt="Image"
-        style={{ width: "10rem", margin: '0 auto' }}
+        style={{ width: "10rem", margin: "0 auto" }}
       ></img>
       <div className="card-body">{props.option}</div>
     </div>
