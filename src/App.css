@@ -49,6 +49,12 @@
   text-align: center;
 }
 
+button.btn.btn-primary {
+  color: rgb(78, 61, 61);
+  background-color: #a6f7d8;
+  border-color: #f5f4f3;
+}
+
 element.style {
   width: 11rem;
   margin-left: 70px;
