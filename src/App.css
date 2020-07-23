@@ -55,6 +55,12 @@ button.btn.btn-primary {
   border-color: #f5f4f3;
   font-family: "Courier New";
 }
+button.btn.btn-primary:hover {
+  color: rgb(78, 61, 61);
+  background-color: #8dd3b8;
+  border-color: #f5f4f3;
+  font-family: "Courier New";
+}
 
 h1 {
   font-family: "Courier New";
@@ -72,6 +78,7 @@ div.card-body {
 
 .roundDesign {
   font-family: "Courier New";
+  border-radius: 122px;
 }
 
 .score {
