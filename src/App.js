@@ -114,7 +114,7 @@ function App() {
 
           <div className="row mt-3">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body roundDesign">
                 Round {showRound}
                 <div className="row mt-1">
                   {showPlayerScore} : {showComputerScore}
@@ -140,7 +140,9 @@ function App() {
 
         <div className="row mt-3">
           <div className="row mt-2">
-            <Button onClick={refreshPage}>Replay?</Button>
+            <Button onClick={refreshPage} className="design">
+              Replay?
+            </Button>
           </div>
         </div>
         <div className="row mt-3">
