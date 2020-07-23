@@ -58,10 +58,12 @@ button.btn.btn-primary {
 
 h1 {
   font-family: "Courier New";
+  font-weight: "bold";
 }
 
 .col-sm {
   font-family: "Courier New";
+  font-weight: "bold";
 }
 
 div.card-body {

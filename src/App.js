@@ -147,14 +147,16 @@ function App() {
         </div>
         <div className="row mt-3">
           <div className="row mt-2">
-            <div className="score">{finalScore()}</div>
+            <CSSTransition in={showChoices} timeout={9000} classNames="my-node">
+              <div className="score">{finalScore()}</div>
+            </CSSTransition>
           </div>
         </div>
 
         <div className="row mt-5">
           <div className="col-sm">
             Computer's Choice
-            <CSSTransition in={showChoices} timeout={5000} classNames="my-node">
+            <CSSTransition in={showChoices} timeout={9000} classNames="my-node">
               <div className="row m-2 justify-content-center">
                 <Choice
                   key={computerChoice.name}
