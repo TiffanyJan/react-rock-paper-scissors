@@ -21,12 +21,10 @@ function App() {
 
   const [showComputerScore, setComputerScore] = useState(0);
 
-  const [modalShow, setModalShow] = React.useState(false);
-
   const [choices, setChoices] = useState([
-    { name: "Rock", image: RockImg, show: true },
-    { name: "Scissors", image: ScissorsImg, show: true },
+    { name: "Rock", image: RockImg, show: true, class: "move-right" },
     { name: "Paper", image: PaperImg, show: true },
+    { name: "Scissors", image: ScissorsImg, show: true, class: "move-left" },
   ]);
 
   useEffect(() => {
@@ -50,8 +48,8 @@ function App() {
   function ready(playerChoice) {
     let array = [
       { name: "Rock", image: RockImg, show: true },
-      { name: "Scissors", image: ScissorsImg, show: true },
       { name: "Paper", image: PaperImg, show: true },
+      { name: "Scissors", image: ScissorsImg, show: true },
     ];
     let computerChoice = array[Math.floor(Math.random() * array.length)];
     setShowChoices(true);
@@ -65,23 +63,38 @@ function App() {
   function hideOptions(playerChoice) {
     if (playerChoice == "Rock") {
       let newChoices = [
-        { name: "Rock", image: RockImg, show: true },
-        { name: "Scissors", image: ScissorsImg, show: false },
-        { name: "Paper", image: PaperImg, show: false },
+        { name: "Rock", image: RockImg, show: true, class: "move-right" },
+        { name: "Paper", image: PaperImg, show: false, class: "fade" },
+        {
+          name: "Scissors",
+          image: ScissorsImg,
+          show: false,
+          class: "fade",
+        },
       ];
       setChoices(newChoices);
     } else if (playerChoice == "Scissors") {
       let newChoices = [
-        { name: "Rock", image: RockImg, show: false },
-        { name: "Scissors", image: ScissorsImg, show: true },
-        { name: "Paper", image: PaperImg, show: false },
+        { name: "Rock", image: RockImg, show: false, class: "fade" },
+        { name: "Paper", image: PaperImg, show: false, class: "fade" },
+        {
+          name: "Scissors",
+          image: ScissorsImg,
+          show: true,
+          class: "move-left",
+        },
       ];
       setChoices(newChoices);
     } else {
       let newChoices = [
-        { name: "Rock", image: RockImg, show: false },
-        { name: "Scissors", image: ScissorsImg, show: false },
+        { name: "Rock", image: RockImg, show: false, class: "fade" },
         { name: "Paper", image: PaperImg, show: true },
+        {
+          name: "Scissors",
+          image: ScissorsImg,
+          show: false,
+          class: "fade",
+        },
       ];
       setChoices(newChoices);
     }
@@ -128,7 +141,7 @@ function App() {
                 <CSSTransition
                   in={showChoices}
                   timeout={2000}
-                  classNames="move-right"
+                  classNames={choice.class}
                 >
                   <Choice
                     key={choice.name}

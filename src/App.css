@@ -43,6 +43,22 @@
   transform: translateX(100%);
 }
 
+.move-left-enter {
+  opacity: 1;
+  /* transform: translateX(0px); */
+}
+.move-left-enter-active {
+  opacity: 1;
+  transition: all 2000ms;
+  transform: translateX(-100%);
+}
+
+.move-left-enter-done {
+  opacity: 1;
+  transition: all 2000ms;
+  transform: translateX(-100%);
+}
+
 .col-sm.card.hide {
   opacity: 0;
   transition: opacity 0.7s;
