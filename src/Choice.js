@@ -2,8 +2,10 @@ import React from "react";
 
 export default function Choice(props) {
   function choiceClicked(option) {
+    if (props.showChoices == true) {
+      return;
+    }
 
-    
     props.ready(option);
   }
 

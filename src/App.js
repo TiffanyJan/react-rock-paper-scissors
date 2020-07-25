@@ -151,6 +151,7 @@ function App() {
                     picture={choice.image}
                     ready={ready}
                     show={choice.show}
+                    showChoices ={showChoices}
                   />
                 </CSSTransition>
               ))}
