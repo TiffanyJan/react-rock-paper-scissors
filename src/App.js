@@ -27,6 +27,8 @@ function App() {
     { name: "Scissors", image: ScissorsImg, show: true, class: "move-left" },
   ]);
 
+  const [winnerText, setWinnerText] = useState(" ");
+
   function finalScore() {
     if (showRound === 0) {
       return " ";
@@ -97,19 +99,29 @@ function App() {
   function playerScore(playerChoice, computerChoice) {
     if (playerChoice === computerChoice.name) {
       setPlayerShowScore((score) => (score += 0));
+      setWinnerText("Draw");
     } else if (playerChoice === "Rock" && computerChoice.name === "Scissors") {
       setPlayerShowScore((score) => score + 1);
+      setWinnerText("You Win");
     } else if (playerChoice === "Paper" && computerChoice.name === "Rock") {
       setPlayerShowScore((score) => score + 1);
+      setWinnerText("You Win");
     } else if (playerChoice === "Scissors" && computerChoice.name === "Paper") {
       setPlayerShowScore((score) => score + 1);
+      setWinnerText("You Win");
     } else {
       setComputerScore((score) => score + 1);
+      setWinnerText("Computer Wins");
     }
   }
 
   function refreshPage() {
-    window.location.reload(false);
+    setShowChoices(false);
+    setChoices([
+      { name: "Rock", image: RockImg, show: true, class: "move-right" },
+      { name: "Paper", image: PaperImg, show: true },
+      { name: "Scissors", image: ScissorsImg, show: true, class: "move-left" },
+    ]);
   }
 
   function computerOption() {
@@ -151,7 +163,7 @@ function App() {
                     picture={choice.image}
                     ready={ready}
                     show={choice.show}
-                    showChoices ={showChoices}
+                    showChoices={showChoices}
                   />
                 </CSSTransition>
               ))}
@@ -167,7 +179,7 @@ function App() {
         <div className="row mt-3">
           <div className="col-sm">
             <CSSTransition in={showChoices} timeout={9000} classNames="fade">
-              <div className="score">{finalScore()}</div>
+              <div className="score">{winnerText}</div>
             </CSSTransition>
           </div>
         </div>
