@@ -126,13 +126,19 @@ function App() {
           <div className="row mt-3">
             <div className="row mt-3" style={{ margin: "0 auto" }}>
               {choices.map((choice) => (
-                <Choice
-                  key={choice.name}
-                  option={choice.name}
-                  picture={choice.image}
-                  ready={ready}
-                  show={choice.show}
-                />
+                <CSSTransition
+                  in={showChoices}
+                  timeout={2000}
+                  classNames="move-right"
+                >
+                  <Choice
+                    key={choice.name}
+                    option={choice.name}
+                    picture={choice.image}
+                    ready={ready}
+                    show={choice.show}
+                  />
+                </CSSTransition>
               ))}
             </div>
           </div>
@@ -145,7 +151,7 @@ function App() {
         </div>
         <div className="row mt-3">
           <div className="col-sm">
-            <CSSTransition in={showChoices} timeout={9000} classNames="my-node">
+            <CSSTransition in={showChoices} timeout={9000} classNames="fade">
               <div className="score">{finalScore()}</div>
             </CSSTransition>
           </div>
@@ -154,7 +160,7 @@ function App() {
         <div className="row mt-5">
           <div className="col-sm">
             Computer's Choice
-            <CSSTransition in={showChoices} timeout={9000} classNames="my-node">
+            <CSSTransition in={showChoices} timeout={9000} classNames="fade">
               <div className="row m-2 justify-content-center">
                 <Choice
                   key={computerChoice.name}

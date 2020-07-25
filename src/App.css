@@ -11,20 +11,30 @@
   padding-left: 10px;
 }
 
-.my-node-enter {
+.fade-enter {
   opacity: 0;
 }
-.my-node-enter-active {
+.fade-enter-active {
   opacity: 1;
+  transition: all 2000ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
   transition: opacity 2000ms;
 }
 
-.my-node-exit {
+.move-right-enter {
   opacity: 1;
+  /* transform: translateX(0px); */
 }
-.my-node-exit-active {
+.move-right-enter-active {
   opacity: 0;
-  transition: opacity 2000ms;
+  transition: all 2000ms;
+  transform: translateX(100%);
 }
 
 .col-sm.card.hide {
