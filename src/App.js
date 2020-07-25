@@ -27,12 +27,6 @@ function App() {
     { name: "Scissors", image: ScissorsImg, show: true, class: "move-left" },
   ]);
 
-  useEffect(() => {
-    if (showRound >= 1) {
-      console.log(finalScore());
-    }
-  }, [finalScore]);
-
   function finalScore() {
     if (showRound === 0) {
       return " ";
@@ -118,6 +112,14 @@ function App() {
     window.location.reload(false);
   }
 
+  function computerOption() {
+    if (showChoices === true) {
+      return "col-sm";
+    } else {
+      return "col-sm hide";
+    }
+  }
+
   return (
     <div className="background">
       <div className="col-xs-1" align="center">
@@ -157,7 +159,7 @@ function App() {
         </div>
 
         <div className="row mt-3">
-          <div className="col-sm">
+          <div className={computerOption()}>
             <Button onClick={refreshPage}>Replay?</Button>
           </div>
         </div>
@@ -170,7 +172,7 @@ function App() {
         </div>
 
         <div className="row mt-5">
-          <div className="col-sm">
+          <div className={computerOption()}>
             Computer's Choice
             <CSSTransition in={showChoices} timeout={9000} classNames="fade">
               <div className="row m-2 justify-content-center">

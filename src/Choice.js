@@ -2,6 +2,8 @@ import React from "react";
 
 export default function Choice(props) {
   function choiceClicked(option) {
+
+    
     props.ready(option);
   }
 
