@@ -29,18 +29,6 @@ function App() {
 
   const [winnerText, setWinnerText] = useState(" ");
 
-  function finalScore() {
-    if (showRound === 0) {
-      return " ";
-    } else if (showPlayerScore === showComputerScore) {
-      return "Draw";
-    } else if (showPlayerScore > showComputerScore) {
-      return "You Win";
-    } else {
-      return "Computer Wins";
-    }
-  }
-
   function ready(playerChoice) {
     let array = [
       { name: "Rock", image: RockImg, show: true },

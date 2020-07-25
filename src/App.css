@@ -26,6 +26,9 @@
   opacity: 0;
   transition: opacity 2000ms;
 }
+.fade-exit-done {
+  opacity: 0;
+}
 
 .move-right-enter {
   opacity: 1;
