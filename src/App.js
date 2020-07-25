@@ -109,7 +109,6 @@ function App() {
     <div className="background">
       <div className="col-xs-1" align="center">
         <div className="container">
-          <div className="row"></div>
           <h1>Rock Paper Scissors</h1>
 
           <div className="row mt-3">

@@ -32,7 +32,13 @@
   /* transform: translateX(0px); */
 }
 .move-right-enter-active {
-  opacity: 0;
+  opacity: 1;
+  transition: all 2000ms;
+  transform: translateX(100%);
+}
+
+.move-right-enter-done {
+  opacity: 1;
   transition: all 2000ms;
   transform: translateX(100%);
 }
