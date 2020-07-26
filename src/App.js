@@ -9,93 +9,96 @@ import Button from "react-bootstrap/Button";
 import { CSSTransition } from "react-transition-group";
 
 function App() {
-  const [selectedChoice, setSelectedChoice] = useState("");
-
   const [computerChoice, setComputerChoice] = useState({});
 
-  const [showChoices, setShowChoices] = React.useState(false);
-
-  const [showRound, setShowRound] = useState(0);
-
-  const [showPlayerScore, setPlayerShowScore] = useState(0);
-
-  const [showComputerScore, setComputerScore] = useState(0);
-
-  const [choices, setChoices] = useState([
-    { name: "Rock", image: RockImg, show: true, class: "move-right" },
-    { name: "Paper", image: PaperImg, show: true },
-    { name: "Scissors", image: ScissorsImg, show: true, class: "move-left" },
+  const [playerChoices, setPlayerChoices] = useState([
+    { choiceName: "Rock", image: RockImg, show: true, class: "move-right" },
+    { choiceName: "Paper", image: PaperImg, show: true },
+    {
+      choiceName: "Scissors",
+      image: ScissorsImg,
+      show: true,
+      class: "move-left",
+    },
   ]);
+
+  const [playGame, setplayGame] = React.useState(false);
+
+  const [round, setRound] = useState(0);
+
+  const [playerScore, setPlayerScore] = useState(0);
+
+  const [computerScore, setComputerScore] = useState(0);
 
   const [winnerText, setWinnerText] = useState(" ");
 
-  function ready(playerChoice) {
-    let array = [
-      { name: "Rock", image: RockImg, show: true },
-      { name: "Paper", image: PaperImg, show: true },
-      { name: "Scissors", image: ScissorsImg, show: true },
+  function startGame(playerChoice) {
+    let computerChoices = [
+      { choiceName: "Rock", image: RockImg, show: true },
+      { choiceName: "Paper", image: PaperImg, show: true },
+      { choiceName: "Scissors", image: ScissorsImg, show: true },
     ];
-    let computerChoice = array[Math.floor(Math.random() * array.length)];
-    setShowChoices(true);
+    let computerChoice =
+      computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    setplayGame(true);
     setComputerChoice(computerChoice);
-    setSelectedChoice(playerChoice);
-    setShowRound((round) => round + 1);
-    playerScore(playerChoice, computerChoice);
+    setRound((round) => round + 1);
+    calculateWinner(playerChoice, computerChoice.choiceName);
     hideOptions(playerChoice);
   }
 
   function hideOptions(playerChoice) {
     if (playerChoice == "Rock") {
       let newChoices = [
-        { name: "Rock", image: RockImg, show: true, class: "move-right" },
-        { name: "Paper", image: PaperImg, show: false, class: "fade" },
+        { choiceName: "Rock", image: RockImg, show: true, class: "move-right" },
+        { choiceName: "Paper", image: PaperImg, show: false, class: "fade" },
         {
-          name: "Scissors",
+          choiceName: "Scissors",
           image: ScissorsImg,
           show: false,
           class: "fade",
         },
       ];
-      setChoices(newChoices);
+      setPlayerChoices(newChoices);
     } else if (playerChoice == "Scissors") {
       let newChoices = [
-        { name: "Rock", image: RockImg, show: false, class: "fade" },
-        { name: "Paper", image: PaperImg, show: false, class: "fade" },
+        { choiceName: "Rock", image: RockImg, show: false, class: "fade" },
+        { choiceName: "Paper", image: PaperImg, show: false, class: "fade" },
         {
-          name: "Scissors",
+          choiceName: "Scissors",
           image: ScissorsImg,
           show: true,
           class: "move-left",
         },
       ];
-      setChoices(newChoices);
+      setPlayerChoices(newChoices);
     } else {
       let newChoices = [
-        { name: "Rock", image: RockImg, show: false, class: "fade" },
-        { name: "Paper", image: PaperImg, show: true },
+        { choiceName: "Rock", image: RockImg, show: false, class: "fade" },
+        { choiceName: "Paper", image: PaperImg, show: true },
         {
-          name: "Scissors",
+          choiceName: "Scissors",
           image: ScissorsImg,
           show: false,
           class: "fade",
         },
       ];
-      setChoices(newChoices);
+      setPlayerChoices(newChoices);
     }
   }
 
-  function playerScore(playerChoice, computerChoice) {
-    if (playerChoice === computerChoice.name) {
-      setPlayerShowScore((score) => (score += 0));
+  function calculateWinner(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+      setPlayerScore((score) => (score += 0));
       setWinnerText("Draw");
-    } else if (playerChoice === "Rock" && computerChoice.name === "Scissors") {
-      setPlayerShowScore((score) => score + 1);
+    } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
+      setPlayerScore((score) => score + 1);
       setWinnerText("You Win");
-    } else if (playerChoice === "Paper" && computerChoice.name === "Rock") {
-      setPlayerShowScore((score) => score + 1);
+    } else if (playerChoice === "Paper" && computerChoice === "Rock") {
+      setPlayerScore((score) => score + 1);
       setWinnerText("You Win");
-    } else if (playerChoice === "Scissors" && computerChoice.name === "Paper") {
-      setPlayerShowScore((score) => score + 1);
+    } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
+      setPlayerScore((score) => score + 1);
       setWinnerText("You Win");
     } else {
       setComputerScore((score) => score + 1);
@@ -103,17 +106,22 @@ function App() {
     }
   }
 
-  function refreshPage() {
-    setShowChoices(false);
-    setChoices([
-      { name: "Rock", image: RockImg, show: true, class: "move-right" },
-      { name: "Paper", image: PaperImg, show: true },
-      { name: "Scissors", image: ScissorsImg, show: true, class: "move-left" },
+  function restart() {
+    setplayGame(false);
+    setPlayerChoices([
+      { choiceName: "Rock", image: RockImg, show: true, class: "move-right" },
+      { choiceName: "Paper", image: PaperImg, show: true },
+      {
+        choiceName: "Scissors",
+        image: ScissorsImg,
+        show: true,
+        class: "move-left",
+      },
     ]);
   }
 
   function computerOption() {
-    if (showChoices === true) {
+    if (playGame === true) {
       return "col-sm";
     } else {
       return "col-sm hide";
@@ -129,9 +137,9 @@ function App() {
           <div className="row mt-3">
             <div className="card">
               <div className="card-body roundDesign">
-                Round {showRound}
+                round {round}
                 <div className="row mt-1">
-                  {showPlayerScore} : {showComputerScore}
+                  {playerScore} : {computerScore}
                 </div>
               </div>
             </div>
@@ -139,19 +147,19 @@ function App() {
 
           <div className="row mt-3">
             <div className="row mt-3" style={{ margin: "0 auto" }}>
-              {choices.map((choice) => (
+              {playerChoices.map((choice) => (
                 <CSSTransition
-                  in={showChoices}
+                  in={playGame}
                   timeout={2000}
                   classNames={choice.class}
                 >
                   <Choice
-                    key={choice.name}
-                    option={choice.name}
+                    key={choice.choiceName}
+                    choiceName={choice.choiceName}
                     picture={choice.image}
-                    ready={ready}
+                    startGame={startGame}
                     show={choice.show}
-                    showChoices={showChoices}
+                    playGame={playGame}
                   />
                 </CSSTransition>
               ))}
@@ -161,12 +169,12 @@ function App() {
 
         <div className="row mt-3">
           <div className={computerOption()}>
-            <Button onClick={refreshPage}>Replay?</Button>
+            <Button onClick={restart}>Replay?</Button>
           </div>
         </div>
         <div className="row mt-3">
           <div className="col-sm">
-            <CSSTransition in={showChoices} timeout={9000} classNames="fade">
+            <CSSTransition in={playGame} timeout={9000} classNames="fade">
               <div className="score">{winnerText}</div>
             </CSSTransition>
           </div>
@@ -175,13 +183,13 @@ function App() {
         <div className="row mt-5">
           <div className={computerOption()}>
             Computer's Choice
-            <CSSTransition in={showChoices} timeout={9000} classNames="fade">
+            <CSSTransition in={playGame} timeout={9000} classNames="fade">
               <div className="row m-2 justify-content-center">
                 <Choice
-                  key={computerChoice.name}
-                  option={computerChoice.name}
+                  key={computerChoice.choiceName}
+                  choiceName={computerChoice.choiceName}
                   picture={computerChoice.image}
-                  ready={ready}
+                  startGame={startGame}
                   show={computerChoice.show}
                 />
               </div>

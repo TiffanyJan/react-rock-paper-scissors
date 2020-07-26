@@ -48,7 +48,6 @@
 
 .move-left-enter {
   opacity: 1;
-  /* transform: translateX(0px); */
 }
 .move-left-enter-active {
   opacity: 1;

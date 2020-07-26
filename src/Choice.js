@@ -1,14 +1,13 @@
 import React from "react";
 
 export default function Choice(props) {
-  function choiceClicked(option) {
-    if (props.showChoices == true) {
+  function choiceClicked(choiceName) {
+    if (props.playGame == true) {
       return;
     }
 
-    props.ready(option);
+    props.startGame(choiceName);
   }
-
   function classes() {
     if (props.show == true) {
       return "col-sm card";
@@ -21,7 +20,7 @@ export default function Choice(props) {
     <div
       className={classes()}
       style={{ border: "none" }}
-      onClick={() => choiceClicked(props.option)}
+      onClick={() => choiceClicked(props.choiceName)}
     >
       <img
         className="card-img-top"
@@ -29,7 +28,7 @@ export default function Choice(props) {
         alt="Image"
         style={{ width: "10rem", margin: "0 auto" }}
       ></img>
-      <div className="card-body">{props.option}</div>
+      <div className="card-body">{props.choiceName}</div>
     </div>
   );
 }
