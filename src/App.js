@@ -137,7 +137,7 @@ function App() {
           <div className="row mt-3">
             <div className="card">
               <div className="card-body roundDesign">
-                round {round}
+                Round {round}
                 <div className="row mt-1">
                   {playerScore} : {computerScore}
                 </div>
